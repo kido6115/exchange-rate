@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    maximum-pool-size: 10
+  jpa:
+    generate-ddl: true
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      write-dates-as-timestamps: false
+  profiles:
+    active: live
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 50MB
+  jmx:
+    enabled: false
+  web:
+    resources:
+      cache:
+        period: 86400s
+  sql:
+    init:
+      platform: h2
+server:
+  servlet:
+    session:
+      cookie:
+        name: PHPSESSIONID
+  compression:
+    enabled: true
+  error:
+    include-message: always
+sungyeh:
+  url: 'https://openapi.taifex.com.tw/v1/DailyForeignExchangeRates'
