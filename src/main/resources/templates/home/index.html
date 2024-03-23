@@ -10,11 +10,17 @@
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
     <script src="/js/index.js"></script>
+    <style>
+      .page-jump-to{
+        width: 70px !important;
+    flex: unset !important;
+      }
+    </style>
   </head>
 <body>
     <div class="container">
       <form id="form1" th:object="${queryContext}" action="/home/index" method="post">
-        <input hidden name="page">
+        <input hidden name="page" th:field="*{page}">
         <div class="input-group mb-3">
           <input id="datepicker" th:field="*{condition[date]}" type="text" class="form-control" placeholder="日期" aria-describedby="basic-addon1">
         </div>
@@ -56,8 +62,15 @@
             <li th:if="${i-1} eq ${queryContext.page}" class="page-item active"><a class="page-link page-select" href="#" th:text="${i}"></a></li>
             <li th:unless="${i-1} eq ${queryContext.page}" class="page-item"><a class="page-link page-select" href="#" th:text="${i}"></a></li>
           </th:block>
+          <div class="input-group ">
+            <input type="number" class="form-control page-jump-to" th:value="${queryContext.page+1}" min="1" th:max="${data.totalPages}">
+            <a id="go" href="#" class="btn btn-secondary" >
+            GO
+            </a>
+          </div>
         </ul>
       </nav>
+     
     </div>
 </body>
 </html>
